@@ -1,0 +1,10 @@
+{
+   "BOT_TOKEN":"",
+   "EmailServer":"",
+   "Email":"",
+   "EmailPassword":"",
+   "dbname":"",
+   "user":"",
+   "host":"",
+   "password":""
+}
