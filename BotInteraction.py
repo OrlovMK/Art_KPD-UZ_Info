@@ -24,7 +24,7 @@ async def user_interactionin(type):
     bot = Bot.get_current()
     user = types.User.get_current()
 
-    if type == 3:
+    if type == 3 or type == 2:
         executionStatus = DBInteraction.bot_interactionin_db(type, user.id, Settings, user.full_name)
     else:
         executionStatus = DBInteraction.bot_interactionin_db(type, user.id, Settings)
