@@ -44,8 +44,8 @@ async def bot_alert():
 def mail_analysis():
 
     # Встановлюємо з'єднання з сервером пошти та отримуємо вхідні
-    mail = imaplib.IMAP4_SSL(Settings["EmailServer"])
-    mail.login(Settings["Email"], Settings["EmailPassword"])
+    mail = imaplib.IMAP4_SSL(Settings["EMAIL_SERVER"])
+    mail.login(Settings["Email"], Settings["EMAIL_PASSWORD"])
     mail.select('inbox')
 
     # Отримуємо список ідентифікаторів повідомлень

@@ -3,7 +3,7 @@ import psycopg2
 ''' type: 1 - find; 2 - add; 3 - update; 4 - delete '''
 def bot_interactionin_db(type, userID, Settings, userName=""):
 
-    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["dbname"], Settings["user"], Settings["host"], Settings["password"])
+    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["DB_NAME"], Settings["USER"], Settings["HOST"], Settings["PASSWORD"])
 
     result = None
 
@@ -47,7 +47,7 @@ def bot_interactionin_db(type, userID, Settings, userName=""):
 ''' type: 1 - find; 2 - add; 3 - update; 4 - delete '''
 def db_interactionin_letter(type, letter, Settings):
 
-    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["dbname"], Settings["user"], Settings["host"], Settings["password"])
+    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["DB_NAME"], Settings["USER"], Settings["HOST"], Settings["PASSWORD"])
 
     result = None
 
@@ -92,7 +92,7 @@ def db_interactionin_letter(type, letter, Settings):
 
 def db_get_all_not_processed_letters(Settings):
 
-    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["dbname"], Settings["user"], Settings["host"], Settings["password"])
+    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["DB_NAME"], Settings["USER"], Settings["HOST"], Settings["PASSWORD"])
 
     result = None
 
@@ -124,7 +124,7 @@ def db_get_all_not_processed_letters(Settings):
 
 def db_get_all_users(Settings):
 
-    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["dbname"], Settings["user"], Settings["host"], Settings["password"])
+    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["DB_NAME"], Settings["USER"], Settings["HOST"], Settings["PASSWORD"])
 
     result = None
 
@@ -147,7 +147,7 @@ def db_get_all_users(Settings):
 
 def db_letter_processed(id, Settings):
 
-    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["dbname"], Settings["user"], Settings["host"], Settings["password"])
+    db_connect_params = "dbname='%s' user='%s' host='%s' password='%s'" % (Settings["DB_NAME"], Settings["USER"], Settings["HOST"], Settings["PASSWORD"])
 
     connect = psycopg2.connect(db_connect_params)
 
