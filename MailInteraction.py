@@ -100,7 +100,7 @@ def mail_analysis():
     
 async def main():
     while True:
-        #mail_analysis()
+        mail_analysis()
         await bot_alert()
         time.sleep(600)
 
