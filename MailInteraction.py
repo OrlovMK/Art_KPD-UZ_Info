@@ -11,8 +11,8 @@ Settings = ""
 
 # Зчитуємо файл з налаштуваннями
 with open('Settings.json', 'r') as f:
-    text = f.read()
-    Settings = json.loads(text)
+    textParam = f.read()
+    Settings = json.loads(textParam)
     f.close()
 
 bot = Bot(token=Settings["BOT_TOKEN"], parse_mode=types.ParseMode.HTML)
@@ -25,9 +25,9 @@ async def bot_alert():
     users = DBInteraction.db_get_all_users(Settings)
     letters = DBInteraction.db_get_all_not_processed_letters(Settings)
 
-    for letter in letters:
-
-        text = "Тема: " + letter[5] + "\n\n" + letter[1]
+    for letter in letters: 
+        #text = "Тема: " + letter[5] + "\n\n" + letter[1]
+        text = "Тема: " + letter[5]
         text = text.replace('<mailto:support@kpd-uz.com>','')
 
         for user in users:
@@ -45,7 +45,7 @@ def mail_analysis():
 
     # Встановлюємо з'єднання з сервером пошти та отримуємо вхідні
     mail = imaplib.IMAP4_SSL(Settings["EMAIL_SERVER"])
-    mail.login(Settings["Email"], Settings["EMAIL_PASSWORD"])
+    mail.login(Settings["EMAIL"], Settings["EMAIL_PASSWORD"])
     mail.select('inbox')
 
     # Отримуємо список ідентифікаторів повідомлень
@@ -80,19 +80,28 @@ def mail_analysis():
         sent_date = sent_dateTime.date()
         sent_time = sent_dateTime.time()
 
+        a = 0
+
+        text_letter = ""
+        letter = ""
+        header_letter = ""
+
         header_letter, encoding = email.header.decode_header(
             email_message['Subject'])[0]
         header_letter = header_letter.decode('utf-8')
 
-        text_letter = str(email_message.get_payload()[0]._payload).encode('utf8', 'surrogateescape').decode('utf8')
+        try:
+            text_letter = str(email_message.get_payload()[0]._payload).encode('utf8', 'surrogateescape').decode('utf8')
+        except (Exception,) as error:
+            a = 1
 
         letter = {'date': sent_date,'time': sent_time,'header': header_letter, 'text': text_letter, 'tmsoft_letter':tmsoft_letter}
 
         # Записуємо в базу лист
         res = DBInteraction.db_interactionin_letter(2, letter, Settings)
 
-        if res == None:
-            print(1)
+        if res == None: 
+            a = 2 
 
     # Відключаємо з'єднання з сервером пошти
     mail.close()

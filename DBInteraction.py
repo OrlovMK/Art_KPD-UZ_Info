@@ -32,7 +32,6 @@ def bot_interactionin_db(type, userID, Settings, userName=""):
             cursor.execute(sql, (userName, userID))
         else:
             cursor.execute(sql, (userID,))
-
         result = cursor.fetchone()
         connect.commit()
         cursor.close()
@@ -155,7 +154,7 @@ def db_letter_processed(id, Settings):
 
     try:
         cursor = connect.cursor()
-        cursor.execute(sql, (id))
+        cursor.execute(sql, (id,))
         connect.commit()
         cursor.close()
     except (Exception, psycopg2.DatabaseError) as error:
