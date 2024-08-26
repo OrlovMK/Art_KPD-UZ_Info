@@ -9,6 +9,7 @@ import asyncio
 
 Settings = ""
 
+
 # Зчитуємо файл з налаштуваннями
 with open('Settings.json', 'r') as f:
     textParam = f.read()
